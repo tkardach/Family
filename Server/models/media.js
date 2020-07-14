@@ -8,7 +8,7 @@ const mediaSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type: String},
   categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-  family: {type: mongoose.Schema.Types.ObjectId, ref: 'Family'}
+  family: [{type: mongoose.Schema.Types.ObjectId, ref: 'Family'}]
 }, 
 {timestamps: true});
 

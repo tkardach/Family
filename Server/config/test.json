@@ -1,5 +1,8 @@
 {
   "port": "0",
   "sessionSecret": "testSessionSecret",
-  "db": "mongodb://localhost/test-kardachfamily"
+  "db": "mongodb://localhost/test-kardachfamily",
+  "thumbnailDir": "temp/thumb",
+  "imageDir": "temp/image",
+  "videoDir": "temp/video"
 }

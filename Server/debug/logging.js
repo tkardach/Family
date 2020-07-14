@@ -58,10 +58,7 @@ function logError(err) {
   } else {
     logger.log({
       level: 'error',
-      message: {
-        description: desc,
-        error: err
-      }
+      message: err
     })
   }
 }
@@ -89,10 +86,7 @@ function logUncaughtExc(err)  {
   } else {
     uncaughtExceptions.log({
       level: 'error',
-      message: {
-        description: desc,
-        error: err
-      }
+      message: err
     })
   }
 }

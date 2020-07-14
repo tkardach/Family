@@ -11,9 +11,11 @@
 const error = require('../middleware/error');
 const express = require('express');
 const home = require('../routes/home');
+const media = require('../routes/media');
 
 module.exports = function (app) {
   app.use('/', home);
+  app.use('/media', media);
 
   // Error handling middleware
   app.use(error);

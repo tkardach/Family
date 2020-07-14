@@ -60,6 +60,9 @@ app.use(function(req, res, next) {
   }
 });
 
+// Check configuration
+require('./startup/config');
+
 // Initialize api routes
 require('./startup/routes')(app);
 

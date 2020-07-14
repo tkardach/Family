@@ -1,0 +1,98 @@
+.dropzone {
+  width: 80%;
+  height: 270px;
+  padding: 2em;
+  text-align: center;
+  border: dashed 1px #979797;
+  margin: 15px auto;
+}
+
+.dropzone input {
+  display: none;
+}
+
+.dropzone label {
+  color: white;
+  width: 183px;
+  height: 44px;
+  border-radius: 21.5px;
+  background-color: #db202f;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.dropzone h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #38424c;
+}
+
+.upload-image {
+  margin: 15px;
+}
+
+.files-list {
+  margin-top: 1.5rem;
+}
+
+.files-list .single-file {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border: dashed 1px #979797;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-grow: 1;
+}
+
+.single-file img.delete {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.single-file .name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #353f4a;
+  margin: 0;
+}
+
+.single-file .size {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a4a4a4;
+  margin: 0;
+  margin-bottom: 0.25rem;
+}
+
+.single-file .info {
+  width: 100%
+}
+
+.fileover {
+  animation: border-pulsate 2s;
+  animation-iteration-count: infinite;
+}
+
+/* Border pulsate animation */
+@keyframes border-pulsate {
+  0%   { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ec9ed00;
+  }
+  50%  { 
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 20px #9ecaed;
+  }
+  100% {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ec9ed00;
+  }
+}

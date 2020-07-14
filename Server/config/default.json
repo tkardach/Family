@@ -1,5 +1,8 @@
 {
   "port": "8080",
   "sessionSecret": "familySessionSecret",
-  "db": "mongodb://localhost/kardachfamily"
+  "db": "mongodb://localhost/kardachfamily",
+  "thumbnailDir": "",
+  "imageDir": "",
+  "videoDir": ""
 }
