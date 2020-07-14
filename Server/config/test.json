@@ -1,0 +1,5 @@
+{
+  "port": "0",
+  "sessionSecret": "testSessionSecret",
+  "db": "mongodb://localhost/test-kardachfamily"
+}
