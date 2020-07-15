@@ -9,13 +9,8 @@ const path = require('path');
 const session = require('express-session');
 const config = require('config');
 const error = require('./middleware/error');
+const {uuidv4} = require('./shared/utility');
 
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,9 +29,9 @@ app.use(session({
 
 app.use(function(req, res, next) {
   var regList = [
-    'http.://localhost.*',
-    'http.://127.0.0.1.*',
-    'http.://.*kardachkandles.com'
+    'http.*:\/\/localhost.*',
+    'http.*:\/\/127.0.0.1.*',
+    'http.*:\/\/.*kardachkandles.com.*'
   ]
 
   let reg = new RegExp(regList.join("|"));

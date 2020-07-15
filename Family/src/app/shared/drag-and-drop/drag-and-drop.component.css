@@ -48,7 +48,7 @@
   flex-grow: 1;
 }
 
-.single-file img.delete {
+.single-file .delete {
   margin-left: 0.5rem;
   cursor: pointer;
   align-self: flex-end;

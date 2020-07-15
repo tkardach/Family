@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OffspringAlbumComponent } from './offspring-album.component';
+import { NGXLogger } from 'ngx-logger';
 
 describe('OffspringAlbumComponent', () => {
   let component: OffspringAlbumComponent;
@@ -8,7 +9,10 @@ describe('OffspringAlbumComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OffspringAlbumComponent ]
+      declarations: [ OffspringAlbumComponent ],
+      providers: [
+        {provide: NGXLogger, useClass: class {}}
+      ],
     })
     .compileComponents();
   }));

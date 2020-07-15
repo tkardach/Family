@@ -4,6 +4,7 @@ import {
   HostListener,
   Output, 
   EventEmitter } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
 
 
 @Directive({
@@ -15,7 +16,7 @@ export class DragAndDropDirective {
   
   counter: number = 0;
 
-  constructor() { }
+  constructor(private logger: NGXLogger) { }
 
   @HostListener('dragenter', ['$event']) onDragEnter(evt) {
     evt.preventDefault();
@@ -44,6 +45,7 @@ export class DragAndDropDirective {
     this.fileOver = false;
     const files = evt.dataTransfer.files;
     if (files.length > 0) {
+      this.logger.log(`${files.length} drag and dropped in for upload`);
       this.fileDropped.emit(files);
     }
   }

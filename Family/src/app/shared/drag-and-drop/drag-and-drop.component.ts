@@ -1,4 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-drag-and-drop',
@@ -9,77 +11,65 @@ export class DragAndDropComponent implements OnInit {
   
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
   files: any[] = [];
+  uploader:FileUploader;
+
   
-  constructor() { }
+  constructor(private logger: NGXLogger) {
+    this.uploader = new FileUploader({
+      url: 'http://localhost:8080/api/media/upload',
+      allowedFileType: ["image", "video"]
+    })
+
+    this.uploader.onSuccessItem = (item, response, status, headers) => this.onSuccessItem(item, response, status, headers);
+    this.uploader.onErrorItem = (item, response, status, headers) => this.onErrorItem(item, response, status, headers);
+   }
 
   ngOnInit(): void {
   }
 
+  onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
+    this.logger.log('File uploaded successfully', item);
+  }
+
+  onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {
+    const error = {
+      error: response,
+      status: status,
+      file: item
+    }
+    this.logger.error('Failed to upload file', error);
+  }
 
   /**
-   * on file drop handler
+   * Handles files dropped event
+   * @param $event File dropped event
    */
   onFileDropped($event) {
-    console.log('File dropped')
     this.prepareFilesList($event);
   }
 
   /**
-   * handle file from browsing
+   * Handles files chosen through browser
+   * @param files List of files chosen
    */
   fileBrowseHandler(files) {
     this.prepareFilesList(files);
   }
 
   /**
-   * Delete file from files list
-   * @param index (File index)
-   */
-  deleteFile(index: number) {
-    if (this.files[index].progress < 100) {
-      console.log("Upload in progress.");
-      return;
-    }
-    this.files.splice(index, 1);
-  }
-
-  /**
-   * Simulate the upload process
-   */
-  uploadFilesSimulator(index: number) {
-    setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            this.files[index].progress += 5;
-          }
-        }, 200);
-      }
-    }, 1000);
-  }
-
-  /**
-   * Convert Files list to normal array list
-   * @param files Files List
+   * Prepare the given list of files for upload
+   * @param files List of files to be uploaded
    */
   prepareFilesList(files: Array<any>) {
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
-    }
+    this.uploader.addToQueue(files);
     this.fileDropEl.nativeElement.value = "";
-    this.uploadFilesSimulator(0);
+    this.uploader.uploadAll();
   }
 
   /**
-   * format bytes
-   * @param bytes File size in bytes
-   * @param decimals Decimals point
+   * Format the bytes to generate and display the file size
+   * @param bytes Size of the file in bytes
+   * @param decimals Number of decimal places to display
    */
   formatBytes(bytes, decimals = 2) {
     if (bytes === 0) {

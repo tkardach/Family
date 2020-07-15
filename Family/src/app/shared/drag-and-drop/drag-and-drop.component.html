@@ -11,17 +11,19 @@
   <label for="fileDropRef">Browse for file</label>
 </div>
 <div class="files-list">
-  <div class="single-file" *ngFor="let file of files; let i = index">
-    <img src="assets/img/dnd/ic-file.svg" width="45px" alt="file">
+  <div class="single-file" *ngFor="let item of uploader.queue">
     <div class="info">
       <h4 class="name">
-        {{ file?.name }}
+        {{ item?.file?.name }}
       </h4>
       <p class="size">
-        {{ formatBytes(file?.size) }}
+        {{ formatBytes(item?.file?.size) }}
       </p>
-      <app-file-progress [progress]="file?.progress"></app-file-progress>
+      <app-file-progress [progress]="item?.progress" ></app-file-progress>
     </div>
-    <img src="assets/img/dnd/ic-delete-file.svg" class="delete" width="20px" alt="file" (click)="deleteFile(i)">
+    <svg *ngIf="!item?.isUploaded" width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash delete" fill="currentColor" xmlns="http://www.w3.org/2000/svg" (click)="item.remove()">
+      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+      <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+    </svg>
   </div>
 </div>

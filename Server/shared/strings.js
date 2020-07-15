@@ -13,4 +13,13 @@ const StartupStrings = {
   }
 }
 
+const RegexStrings = {
+  Files: {
+    Image: /image.*/,
+    Video: /video.*/,
+    Extension: /\.[0-9a-z]+$/i
+  }
+}
+
 module.exports.StartupStrings = StartupStrings;
+module.exports.RegexStrings = RegexStrings;

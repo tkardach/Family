@@ -7,6 +7,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OffspringAlbumModule } from './offspring-album/offspring-album.module';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
+import { LoggerModule } from 'ngx-logger';
+import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,7 +22,14 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     OffspringAlbumModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    LoggerModule.forRoot({
+      serverLoggingUrl: environment.apiUrl,
+      level:environment.logLevel,
+      serverLogLevel: environment.serverLogLevel,
+      disableConsoleLogging: false
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

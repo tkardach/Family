@@ -15,6 +15,17 @@ const logger = winston.createLogger({
   ]
 });
 
+
+// Client error logger
+const clientLogger = winston.createLogger({
+  format: winston.format.json(),
+  transports: [
+    // - Write all logs error (and below) to `logs_error.log`.
+    //
+    new winston.transports.File({ filename: 'client_logs_error.log', level: 'error' })
+  ]
+});
+
 // Security logger monitors all suspicious activity that could be a security threat
 const securityLogger = winston.createLogger({
   transports: [
@@ -91,10 +102,18 @@ function logUncaughtExc(err)  {
   }
 }
 
+function logInfoClient(message) {
+  clientLogger.log({
+    level: 'error',
+    message: message
+  })
+}
+
 module.exports.logError = logError;
 module.exports.logInfo = logInfo;
 module.exports.logSecurity = logSecurity;
 module.exports.logUncaughtExc = logUncaughtExc;
+module.exports.logInfoClient = logInfoClient;
 module.exports.logger = logger;
 module.exports.uncaughtExceptions = uncaughtExceptions;
 module.exports.securityLogger = securityLogger;
