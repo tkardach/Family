@@ -12,6 +12,10 @@ const error = require('./middleware/error');
 const {uuidv4} = require('./shared/utility');
 
 
+app.use('/images', express.static(config.get('imageDir')));
+app.use('/thumbnails', express.static(config.get('thumbnailDir')));
+app.use('/videos', express.static(config.get('videoDir')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({

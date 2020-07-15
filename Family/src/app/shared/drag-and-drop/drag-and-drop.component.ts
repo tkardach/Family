@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { NGXLogger } from 'ngx-logger';
 
@@ -8,23 +8,25 @@ import { NGXLogger } from 'ngx-logger';
   styleUrls: ['./drag-and-drop.component.css']
 })
 export class DragAndDropComponent implements OnInit {
-  
   @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
+  
   files: any[] = [];
   uploader:FileUploader;
 
   
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger) {}
+
+  ngOnInit(): void {
+  }
+
+  initializeUploader(url:string, allowedTypes:string[]) {
     this.uploader = new FileUploader({
-      url: 'http://localhost:8080/api/media/upload',
-      allowedFileType: ["image", "video"]
+      url: url,
+      allowedFileType: allowedTypes
     })
 
     this.uploader.onSuccessItem = (item, response, status, headers) => this.onSuccessItem(item, response, status, headers);
     this.uploader.onErrorItem = (item, response, status, headers) => this.onErrorItem(item, response, status, headers);
-   }
-
-  ngOnInit(): void {
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): any {

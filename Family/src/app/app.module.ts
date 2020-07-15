@@ -10,6 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { LoggerModule } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { UploadModule } from './upload/upload.module';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     OffspringAlbumModule,
+    UploadModule,
     SharedModule,
     HttpClientModule,
     LoggerModule.forRoot({

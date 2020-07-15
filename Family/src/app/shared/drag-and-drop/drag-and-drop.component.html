@@ -11,7 +11,7 @@
   <label for="fileDropRef">Browse for file</label>
 </div>
 <div class="files-list">
-  <div class="single-file" *ngFor="let item of uploader.queue">
+  <div class="single-file" *ngFor="let item of (uploader?.queue || [])">
     <div class="info">
       <h4 class="name">
         {{ item?.file?.name }}

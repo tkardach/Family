@@ -10,3 +10,8 @@
 .navbar-custom .navbar-text {
   color: rgb(102, 102, 102);
 }
+
+.cloud-icon {
+  cursor: pointer;
+  color: rgb(102, 102, 102);
+}

@@ -4,7 +4,7 @@ Joi.objectId = require('joi-objectid')(Joi);
 
 
 const mediaSchema = new mongoose.Schema({
-  _id: {type: String},
+  _id: {type: String, required: true},
   filename: {type: String, required: true, immutable: true, unique: true},
   url: {type: String, required: true},
   name: {type: String, required: true},

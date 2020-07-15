@@ -8,5 +8,7 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080/api/logs', 
   logLevel: NgxLoggerLevel.TRACE,
-  serverLogLevel: NgxLoggerLevel.OFF
+  serverLogLevel: NgxLoggerLevel.OFF,
+  imageAndVideoUploadURL: 'http://localhost:8080/api/media/upload',
+  imageAndVideoAllowedTypes: ["image", "video"]
 };
