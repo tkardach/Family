@@ -48,10 +48,13 @@
   flex-grow: 1;
 }
 
-.single-file .delete {
+.single-file .right-icon {
   margin-left: 0.5rem;
-  cursor: pointer;
   align-self: flex-end;
+}
+
+.single-file .loading {
+  color: #db202f;
 }
 
 .single-file .name {

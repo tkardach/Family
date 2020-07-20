@@ -4,5 +4,6 @@
   "db": "familyDatabase",
   "thumbnailDir": "familyThumbnailDir",
   "imageDir": "familyImageDir",
-  "videoDir": "familyVideoDir"
+  "videoDir": "familyVideoDir",
+  "domain": "familyDomain"
 }

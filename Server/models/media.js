@@ -4,15 +4,14 @@ Joi.objectId = require('joi-objectid')(Joi);
 
 
 const mediaSchema = new mongoose.Schema({
-  _id: {type: String, required: true},
-  filename: {type: String, required: true, immutable: true, unique: true},
-  url: {type: String, required: true},
+  filename: {type: String, required: true, immutable: true},
+  url: {type: String, required: true, immutable: true},
   name: {type: String, required: true},
   description: {type: String},
   categories: [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
   family: [{type: mongoose.Schema.Types.ObjectId, ref: 'Family'}],
-  path: {type: String, required: true},
-  mimetype: {type: String, required: true}
+  path: {type: String, required: true, immutable: true},
+  mimetype: {type: String, required: true, immutable: true}
 }, 
 {timestamps: true});
 

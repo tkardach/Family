@@ -47,3 +47,8 @@ if (config.get('port') > 65535 || config.get('port') < 0) {
   logError(StartupStrings.Config.Invalid.format(config.get('port'), 'port'));
   process.exit(1);
 }
+
+if (!config.get('domain')) {
+  logError(StartupStrings.Config.NotDefined.format('domain'));
+  process.exit(1);
+}

@@ -12,7 +12,8 @@ module.exports = async function () {
   await mongoose.connect(db, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    retryWrites: false
   })
   .then(() => {
     logInfo('Connected to MongoDB database.');

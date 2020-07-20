@@ -4,5 +4,6 @@
   "db": "mongodb://localhost/kardachfamily",
   "thumbnailDir": "",
   "imageDir": "",
-  "videoDir": ""
+  "videoDir": "",
+  "domain": ""
 }
