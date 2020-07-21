@@ -22,6 +22,18 @@ describe('/api/media', () => {
     }
   })
 
+  beforeAll(() => {
+    // Setup test configuration environment
+    if (process.env.NODE_ENV === 'test') {
+      const testConfig = require('../../config/test.json');
+      
+      process.env.ALLOW_CONFIG_MUTATIONS = true;
+      config.thumbnailDir = testConfig.thumbnailDir;
+      config.imageDir = testConfig.imageDir;
+      config.videoDir = testConfig.videoDir;
+    }
+  })
+
   afterAll(async () => {
     await mongoose.connection.close();
   });

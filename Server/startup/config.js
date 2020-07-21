@@ -3,16 +3,6 @@ const fs = require('fs');
 const {StartupStrings} = require('../shared/strings');
 const {logError} = require('../debug/logging');
 
-// Setup test configuration environment
-if (process.env.NODE_ENV === 'test') {
-  const testConfig = require('../config/test.json');
-  
-  process.env.ALLOW_CONFIG_MUTATIONS = true;
-  config.thumbnailDir = testConfig.thumbnailDir;
-  config.imageDir = testConfig.imageDir;
-  config.videoDir = testConfig.videoDir;
-}
-
 if (!config.has('imageDir')) {
   logError(StartupStrings.Config.NotDefined.format('imageDir'));
   process.exit(1);
