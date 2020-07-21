@@ -11,6 +11,8 @@ const config = require('config');
 const error = require('./middleware/error');
 const {uuidv4} = require('./shared/utility');
 
+// Check configuration
+require('./startup/config');
 
 app.use('/images', express.static(config.get('imageDir')));
 app.use('/thumbnails', express.static(config.get('thumbnailDir')));
@@ -58,9 +60,6 @@ app.use(function(req, res, next) {
     next();
   }
 });
-
-// Check configuration
-require('./startup/config');
 
 // Initialize api routes
 require('./startup/routes')(app);

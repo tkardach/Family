@@ -1,7 +1,5 @@
 {
-  "port": "familyServerPort",
   "sessionSecret": "familySessionSecret",
-  "db": "familyDatabase",
   "thumbnailDir": "familyThumbnailDir",
   "imageDir": "familyImageDir",
   "videoDir": "familyVideoDir",

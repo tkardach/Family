@@ -3,17 +3,27 @@ const fs = require('fs');
 const {StartupStrings} = require('../shared/strings');
 const {logError} = require('../debug/logging');
 
-if (!config.get('imageDir')) {
+// Setup test configuration environment
+if (process.env.NODE_ENV === 'test') {
+  const testConfig = require('../config/test.json');
+  
+  process.env.ALLOW_CONFIG_MUTATIONS = true;
+  config.thumbnailDir = testConfig.thumbnailDir;
+  config.imageDir = testConfig.imageDir;
+  config.videoDir = testConfig.videoDir;
+}
+
+if (!config.has('imageDir')) {
   logError(StartupStrings.Config.NotDefined.format('imageDir'));
   process.exit(1);
 }
 
-if (!config.get('thumbnailDir')) {
+if (!config.has('thumbnailDir')) {
   logError(StartupStrings.Config.NotDefined.format('thumbnailDir'));
   process.exit(1);
 }
 
-if (!config.get('videoDir')) {
+if (!config.has('videoDir')) {
   logError(StartupStrings.Config.NotDefined.format('videoDir'));
   process.exit(1);
 }
@@ -33,12 +43,12 @@ if (!fs.existsSync(config.get('videoDir'))) {
   process.exit(1);
 }
 
-if (!config.get('db')) {
+if (!config.has('db')) {
   logError(StartupStrings.Config.NotDefined.format('db'));
   process.exit(1);
 }
 
-if (process.env.NODE_ENV !== 'test' && !config.get('port')) {
+if (process.env.NODE_ENV !== 'test' && !config.has('port')) {
   logError(StartupStrings.Config.NotDefined.format('port'));
   process.exit(1);
 }
@@ -48,7 +58,7 @@ if (config.get('port') > 65535 || config.get('port') < 0) {
   process.exit(1);
 }
 
-if (!config.get('domain')) {
+if (!config.has('domain')) {
   logError(StartupStrings.Config.NotDefined.format('domain'));
   process.exit(1);
 }

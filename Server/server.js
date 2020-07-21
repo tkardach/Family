@@ -3,20 +3,16 @@
  *  server.js intializes the entire application and hosts it on the specified port
  */
 
-const config = require('config')
-const {logger} = require('./debug/logging');
 const app = require('./app.js');
+const config = require('config')
+const {logInfo} = require('./debug/logging');
 
 // Define server port
 const port = process.env.PORT || config.get('port');
 
 // Start and return the server object
 const server = app.listen(port, () => {
-  logger.log({
-    level: 'info',
-    message: `App listening on port ${port}`
-  });
+  logInfo(`App listening on port ${port}`);
 });
-
 
 module.exports = server;

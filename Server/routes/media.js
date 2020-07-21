@@ -111,21 +111,14 @@ router.get('/', (req, res) => {
 });
 
 
-const mediaUpload = upload.fields([
-  {name: 'file', maxCount: 25}
-])
+const mediaUpload = upload.array('file', 25);
 
 router.post('/upload', (req, res) => {
   mediaUpload(req, res, async function(err) {
-    if (err) {
-      logError(err);
-      return res.status(500).send('Error occured while uploading media');
-    }
-
     if (req.fileValidationError)
       return res.status(400).send(req.fileValidationError);
     
-    let file = req.files.file[0];
+    let file = req.files[0];
     
     try {
       await addMediaToDatabase(req.imageType, file);

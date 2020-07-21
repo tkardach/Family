@@ -1,9 +1,9 @@
 {
   "port": "0",
-  "sessionSecret": "testSessionSecret",
   "db": "mongodb://localhost/test-kardachfamily",
-  "thumbnailDir": "temp/thumb",
-  "imageDir": "temp/image",
-  "videoDir": "temp/video",
+  "sessionSecret": "testSessionSecret",
+  "thumbnailDir": "./tests/util/thumb",
+  "imageDir": "./tests/util/image",
+  "videoDir": "./tests/util/video",
   "domain": ""
 }

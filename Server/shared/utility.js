@@ -1,4 +1,7 @@
 const url = require('url');
+const fs = require('fs');
+const path = require('path');
+
 /**
  * Delay operation by given time in milliseconds
  * @param {number} ms - Time in milliseconds to delay 
@@ -25,6 +28,22 @@ function uuidv4() {
   });
 }
 
+
+/**
+ * Attempts to delete all files within a directory
+ * @param {string} dir Directory to wipe 
+ */
+function removeFilesFromDir(dir) {
+  fs.readdir(dir, (err, files) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      fs.unlink(path.join(dir, file), err => {
+        if (err) throw err;
+      });
+    }
+  });
+}
 
 /**
  * Generate a url from the provided string arguments
@@ -76,3 +95,4 @@ module.exports.uuidv4 = uuidv4;
 module.exports.delay = delay;
 module.exports.errorResponse = errorResponse;
 module.exports.generateUrl = generateUrl;
+module.exports.removeFilesFromDir = removeFilesFromDir;
